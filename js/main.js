@@ -6,10 +6,9 @@ function initGame() {
   currentRound = 1;
   maxRounds = 5;
   gameOver = false;
-  
   let game = document.querySelector('.game');
   game.classList.toggle('hide');
-  start.classList.toggle('hide');
+  popup.classList.toggle('hide');
   updateUi()
 }
 
@@ -92,12 +91,13 @@ let computerScoreElement = document.querySelector('#computer-score');
 let currentRound;
 let currentRoundElement = document.querySelector('#current-round');
 let maxRounds;
-let gameOver;
 
 let start = document.querySelector('.start-btn');
 start.addEventListener('click', () => {
   initGame()
 });
+
+let popup = document.querySelector('.popup-container');
 
 let buttons = document.querySelectorAll('.btn');
 buttons.forEach((button) => {
@@ -106,15 +106,11 @@ buttons.forEach((button) => {
     if (currentRound < maxRounds) {
       currentRound += 1;
     } else {
-      gameOver = true;
+      
     }
     updateUi()
   });
 });
-
-// autostart game
-initGame()
-
 // module.exports = {
 //   playRound,
 //   capitalize

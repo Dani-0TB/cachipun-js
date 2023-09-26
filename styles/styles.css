@@ -39,8 +39,9 @@ body {
 }
 
 .start-btn{
+  height: 3.5rem;
   border: none;
-  border-radius: 2rem;
+  border-radius: 1rem;
   padding: 1rem 2rem;
   font-size: 1rem;
   font-weight: 600;
@@ -60,10 +61,6 @@ body {
   display: flex;
   flex-flow: column wrap;
   width: 100%;
-}
-
-.hide {
-  display: none;
 }
 
 .round-txt {
@@ -141,4 +138,53 @@ body {
 .out-txt {
   margin: 0.2rem 0;
   font-size: 20px;
+}
+
+.popup-container {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.178);
+}
+
+.popup {
+  max-width: 300px;
+  width: 100%;
+  height: 150px;
+  border: 2px solid black;
+  background-color: white;
+  border-radius: 2rem;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  position: fixed;
+  align-self: center;
+}
+
+.popup-title {
+  margin: 0;
+  font-size: 20px;
+}
+
+.popup-content {
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-text {
+  margin:2px 0;
+}
+
+.hide {
+  display: none;
 }
