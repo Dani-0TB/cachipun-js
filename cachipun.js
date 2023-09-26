@@ -1,3 +1,14 @@
+function outputText(string) {
+  let output = document.querySelector('.output')
+
+  let text = document.createElement('p');
+  text.textContent = string;
+  text.classList.add('out-txt');
+
+  output.appendChild(text);
+  output.scrollTop = output.scrollHeight;
+}
+
 function getComputerChoice(){
   let choices = ['Rock','Paper','Scissors'];
   let choice = Math.floor(Math.random() * 3);
@@ -11,7 +22,7 @@ function playRound(playerSelection, computerSelection){
 
   playerSelection = playerSelection.toLowerCase()
   computerSelection = computerSelection.toLowerCase()
-  
+
   if (playerSelection === computerSelection) {
     return "It's a tie!"
   }
@@ -41,7 +52,16 @@ function printWinner(playerScore, computerScore) {
   }
 }
 
-module.exports = {
-  playRound,
-  capitalize
-}
+let buttons = document.querySelectorAll('.btn');
+
+buttons.forEach((button) => {
+  button.addEventListener('click', () => {
+    outputText(playRound(button.id, getComputerChoice()));
+  });
+});
+
+
+// module.exports = {
+//   playRound,
+//   capitalize
+// }

@@ -115,3 +115,11 @@ body {
   font-weight: 600;
   background-color: rgb(195, 158, 255);
 }
+
+.btn:hover {
+  background-color: rgb(178, 130, 255);
+}
+
+.btn:active {
+  background-color: rgb(158, 97, 255);
+}
