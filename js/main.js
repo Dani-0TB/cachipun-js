@@ -5,6 +5,8 @@ function initGame() {
   computerScore = 0;
   currentRound = 1;
   maxRounds = 5;
+  gameOver = false;
+  
   let game = document.querySelector('.game');
   game.classList.toggle('hide');
   start.classList.toggle('hide');
@@ -12,26 +14,35 @@ function initGame() {
 }
 
 function playRound(playerSelection, computerSelection){
+  // rules are formatted such as item[0] beats item[1]
   let rules = [ ['rock','scissors'],
                 ['paper','rock'],
-                ['scissors','paper'] ]
+                ['scissors','paper'] ];
 
   playerSelection = playerSelection.toLowerCase()
   computerSelection = computerSelection.toLowerCase()
 
   if (playerSelection === computerSelection) {
-    return "It's a tie!"
+    outputText("It's a tie!");
+    return;
   }
-
-  for (let i = 0; i < 3; i++) {
-    if (rules[i].includes(playerSelection) && rules[i].includes(computerSelection)) {
-      if (rules[i][0] === playerSelection) {
-        return `You Won! ${ capitalize(playerSelection) } beats ${ capitalize(computerSelection) }!`;
-      } else {
-        return `You Lose! ${ capitalize(computerSelection) } beats ${ capitalize(playerSelection) } :c`;
+  let count = 0;
+  rules.forEach((rule) => {
+    console.log(count)
+    if (rule.includes(playerSelection) && rule.includes(computerSelection)) {
+      if (rule[0] === playerSelection) {
+        playerScore += 1;
+        let message = `You win! `;
+        message += `${capitalize(rule[0])} beats ${ capitalize(rule[1]) }!`
+        outputText(message);
+        return;
       }
+      computerScore += 1;
+      let message = `You Lose! `;
+      message += `${capitalize(rule[0])} beats ${ capitalize(rule[1]) } :c`
+      outputText(message);
     }
-  }
+  });
 }
 
 function getComputerChoice(){
@@ -81,6 +92,7 @@ let computerScoreElement = document.querySelector('#computer-score');
 let currentRound;
 let currentRoundElement = document.querySelector('#current-round');
 let maxRounds;
+let gameOver;
 
 let start = document.querySelector('.start-btn');
 start.addEventListener('click', () => {
@@ -90,7 +102,13 @@ start.addEventListener('click', () => {
 let buttons = document.querySelectorAll('.btn');
 buttons.forEach((button) => {
   button.addEventListener('click', () => {
-    outputText(playRound(button.id, getComputerChoice()));
+    playRound(button.id, getComputerChoice());
+    if (currentRound < maxRounds) {
+      currentRound += 1;
+    } else {
+      gameOver = true;
+    }
+    updateUi()
   });
 });
 
