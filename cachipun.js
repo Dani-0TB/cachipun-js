@@ -60,6 +60,12 @@ buttons.forEach((button) => {
   });
 });
 
+let start = document.querySelector('.start-btn');
+start.addEventListener('click', () => {
+  let game = document.querySelector('.game');
+  game.classList.toggle('hide');
+  start.classList.toggle('hide');
+});
 
 // module.exports = {
 //   playRound,

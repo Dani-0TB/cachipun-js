@@ -47,11 +47,23 @@ body {
   background-color: rgb(114, 219, 72);
 }
 
+.start-btn:hover {
+  background-color: rgb(95, 206, 51);
+}
+
+.start-btn:active {
+  background-color: rgb(59, 172, 15);
+}
+
 /* GAME */
 .game {
   display: flex;
   flex-flow: column wrap;
   width: 100%;
+}
+
+.hide {
+  display: none;
 }
 
 .scores{
