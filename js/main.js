@@ -50,13 +50,14 @@ function getComputerChoice(){
 
 function gameOver() {
   let message = "";
+  
   if (playerScore === computerScore) {
     message = `You tied with a score of ${ playerScore }`
   } else if (playerScore > computerScore) {
     message = `You win with a score of ${ playerScore }!`
+  } else {
+    message = `Computer wins with a score of ${ computerScore } :c`
   }
-
-  message = `Computer wins with a score of ${ computerScore } :c`
 
   let popupTitle = document.querySelector('.popup-title');
   popupTitle.textContent = "Game Over";
