@@ -4,8 +4,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cachipun JS</title>
-  <script src="cachipun.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <script src="cachipun.js" defer></script>
 </head>
 <body>
+  <div class="app">
+    <h1 class="title">Cachipun-JS</h1>
+    <p class="subtitle">Test your luck against the computer</p>
+    <div class="container">
+      <button class="start-btn">Start Game</button>
+      <div class="game hide">
+
+        <div class="scores">
+          <div class="score-box">
+            <h2 class="score-title">Player Score</h2>
+            <p class="score-number">0</p>
+          </div>
+          <div class="score-box">
+            <h2 class="score-title">Computer Score</h2>
+            <p class="score-number">0</p>
+          </div>
+        </div>
+
+        <div class="output">
+        </div>
+
+        <div class="selection">
+          <button id="rock" class="btn">Rock</button>
+          <button id="paper" class="btn">Paper</button>
+          <button id="scissors" class="btn">Scissors</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

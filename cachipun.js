@@ -1,3 +1,14 @@
+function outputText(string) {
+  let output = document.querySelector('.output')
+
+  let text = document.createElement('p');
+  text.textContent = string;
+  text.classList.add('out-txt');
+
+  output.appendChild(text);
+  output.scrollTop = output.scrollHeight;
+}
+
 function getComputerChoice(){
   let choices = ['Rock','Paper','Scissors'];
   let choice = Math.floor(Math.random() * 3);
@@ -11,7 +22,7 @@ function playRound(playerSelection, computerSelection){
 
   playerSelection = playerSelection.toLowerCase()
   computerSelection = computerSelection.toLowerCase()
-  
+
   if (playerSelection === computerSelection) {
     return "It's a tie!"
   }
@@ -31,39 +42,6 @@ function capitalize(string) {
   return string[0].toUpperCase() + string.slice(1);
 }
 
-function game() {
-  let computerSelection;
-  let playerSelection;
-  let validSelections = ['rock', 'paper', 'scissors'];
-  let inputIsValid = false;
-  let computerScore = 0;
-  let playerScore = 0;
-
-  for (let i = 0; i < 5; i++) {
-    let round = i+1
-    computerSelection = getComputerChoice();
-    do {
-      playerSelection = prompt(`ROUND ${ round } !  Plase write your selection (Rock, Paper or Scissors) `)
-      if (validSelections.includes(playerSelection)) {
-        inputIsValid = true;
-        break;
-      }
-      alert("Invalid input try again...");
-    } while (!inputIsValid);
-
-    result = playRound(playerSelection, computerSelection);
-    console.log(result);
-
-    if (result.substring(0,7) === 'You Won') {
-      playerScore += 1;
-    } else if (result.substring(0,8) === 'You Lose') {
-      computerScore += 1;
-    }
-  }
-
-  console.log(printWinner(playerScore, computerScore));
-}
-
 function printWinner(playerScore, computerScore) {
   if (playerScore > computerScore) {
     return `Player wins with a score of ${ playerScore }`;
@@ -74,9 +52,22 @@ function printWinner(playerScore, computerScore) {
   }
 }
 
-game()
+let buttons = document.querySelectorAll('.btn');
 
-module.exports = {
-  playRound,
-  capitalize
-}
+buttons.forEach((button) => {
+  button.addEventListener('click', () => {
+    outputText(playRound(button.id, getComputerChoice()));
+  });
+});
+
+let start = document.querySelector('.start-btn');
+start.addEventListener('click', () => {
+  let game = document.querySelector('.game');
+  game.classList.toggle('hide');
+  start.classList.toggle('hide');
+});
+
+// module.exports = {
+//   playRound,
+//   capitalize
+// }
