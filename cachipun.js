@@ -5,7 +5,6 @@ function getComputerChoice(){
 }
 
 function playRound(playerSelection, computerSelection){
-
   let rules = [ ['rock','scissors'],
                 ['paper','rock'],
                 ['scissors','paper'] ]
@@ -31,6 +30,39 @@ function playRound(playerSelection, computerSelection){
 function capitalize(string) {
   return string[0].toUpperCase() + string.slice(1);
 }
+
+function game() {
+  let computerSelection;
+  let playerSelection;
+  let validSelections = ['rock', 'paper', 'scissors'];
+  let inputIsValid = false;
+  let computerScore = 0;
+  let playerScore = 0;
+
+  for (let i = 0; i < 5; i++) {
+    let round = i+1
+    computerSelection = getComputerChoice();
+    do {
+      playerSelection = prompt(`ROUND ${ round } !  Plase write your selection (Rock, Paper or Scissors) `)
+      if (validSelections.includes(playerSelection)) {
+        inputIsValid = true;
+        break;
+      }
+      alert("Invalid input try again...")
+    } while (!inputIsValid);
+
+    result = playRound(playerSelection,computerSelection);
+    console.log(result);
+
+    if (result.substring(0,6) === 'You Won') {
+      playerScore += 1;
+    } else if (result.substring(0,6) === 'You Lose') {
+      computerScore += 1;
+    }
+  }
+}
+
+game()
 
 module.exports = {
   playRound,
