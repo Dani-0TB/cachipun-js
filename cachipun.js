@@ -48,27 +48,29 @@ function game() {
         inputIsValid = true;
         break;
       }
-      alert("Invalid input try again...")
+      alert("Invalid input try again...");
     } while (!inputIsValid);
 
-    result = playRound(playerSelection,computerSelection);
+    result = playRound(playerSelection, computerSelection);
     console.log(result);
 
-    if (result.substring(0,6) === 'You Won') {
+    if (result.substring(0,7) === 'You Won') {
       playerScore += 1;
-    } else if (result.substring(0,6) === 'You Lose') {
+    } else if (result.substring(0,8) === 'You Lose') {
       computerScore += 1;
     }
   }
+
+  console.log(printWinner(playerScore, computerScore));
 }
 
 function printWinner(playerScore, computerScore) {
   if (playerScore > computerScore) {
-    return `Player wins with a score of ${ playerScore }`
+    return `Player wins with a score of ${ playerScore }`;
   } else if (computerScore > playerScore) {
-    return `Computer wins with a socre of ${ computerScore }`
+    return `Computer wins with a socre of ${ computerScore }`;
   } else {
-    return `Player and computer tied with a score of ${ playerScore }`
+    return `Player and computer tied with a score of ${ playerScore }`;
   }
 }
 
