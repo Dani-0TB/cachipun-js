@@ -1,9 +1,14 @@
 // game functions
 
 function initGame() {
+  playerScore = 0;
+  computerScore = 0;
+  currentRound = 1;
+  maxRounds = 5;
   let game = document.querySelector('.game');
   game.classList.toggle('hide');
   start.classList.toggle('hide');
+  updateUi()
 }
 
 function playRound(playerSelection, computerSelection){
@@ -37,6 +42,12 @@ function getComputerChoice(){
 
 // helper functions
 
+function updateUi() {
+  playerScoreElement.textContent = `${ playerScore }`;
+  computerScoreElement.textContent = `${ computerScore }`;
+  currentRoundElement.textContent = `${ currentRound }/${ maxRounds }`;
+}
+
 function outputText(string) {
   let output = document.querySelector('.output')
 
@@ -63,17 +74,24 @@ function printWinner(playerScore, computerScore) {
 }
 
 // Program Code
-let buttons = document.querySelectorAll('.btn');
-
-buttons.forEach((button) => {
-  button.addEventListener('click', () => {
-    outputText(playRound(button.id, getComputerChoice()));
-  });
-});
+let playerScore;
+let playerScoreElement = document.querySelector('#player-score');
+let computerScore;
+let computerScoreElement = document.querySelector('#computer-score');
+let currentRound;
+let currentRoundElement = document.querySelector('#current-round');
+let maxRounds;
 
 let start = document.querySelector('.start-btn');
 start.addEventListener('click', () => {
   initGame()
+});
+
+let buttons = document.querySelectorAll('.btn');
+buttons.forEach((button) => {
+  button.addEventListener('click', () => {
+    outputText(playRound(button.id, getComputerChoice()));
+  });
 });
 
 // autostart game
