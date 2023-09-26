@@ -4,7 +4,6 @@ function initGame() {
   playerScore = 0;
   computerScore = 0;
   currentRound = 1;
-  maxRounds = 5;
   game.classList.toggle('hide');
   popup.classList.toggle('hide');
   updateUi()
@@ -50,13 +49,10 @@ function getComputerChoice(){
 
 function gameOver() {
   let message = "";
-  
-  if (playerScore === computerScore) {
-    message = `You tied with a score of ${ playerScore }`
-  } else if (playerScore > computerScore) {
-    message = `You win with a score of ${ playerScore }!`
+  if (playerScore > computerScore) {
+    message = `You won!`
   } else {
-    message = `Computer wins with a score of ${ computerScore } :c`
+    message = `Computer won :c`
   }
 
   let popupTitle = document.querySelector('.popup-title');
@@ -75,7 +71,7 @@ function gameOver() {
 function updateUi() {
   playerScoreElement.textContent = `${ playerScore }`;
   computerScoreElement.textContent = `${ computerScore }`;
-  currentRoundElement.textContent = `${ currentRound }/${ maxRounds }`;
+  currentRoundElement.textContent = `${ currentRound }`;
 }
 
 function outputText(string) {
@@ -93,16 +89,6 @@ function capitalize(string) {
   return string[0].toUpperCase() + string.slice(1);
 }
 
-function printWinner(playerScore, computerScore) {
-  if (playerScore > computerScore) {
-    return `Player wins with a score of ${ playerScore }`;
-  } else if (computerScore > playerScore) {
-    return `Computer wins with a socre of ${ computerScore }`;
-  } else {
-    return `Player and computer tied with a score of ${ playerScore }`;
-  }
-}
-
 // Program Code
 let game = document.querySelector('.game');
 let playerScore;
@@ -111,7 +97,6 @@ let computerScore;
 let computerScoreElement = document.querySelector('#computer-score');
 let currentRound;
 let currentRoundElement = document.querySelector('#current-round');
-let maxRounds;
 
 let start = document.querySelector('.start-btn');
 start.addEventListener('click', () => {
@@ -124,11 +109,10 @@ let buttons = document.querySelectorAll('.btn');
 buttons.forEach((button) => {
   button.addEventListener('click', () => {
     playRound(button.id, getComputerChoice());
-    if (currentRound < maxRounds) {
-      currentRound += 1;
-    } else {
-      gameOver()
+    if (playerScore === 5 || computerScore == 5) {
+
     }
+    currentRound += 1;
     updateUi()
   });
 });
