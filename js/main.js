@@ -110,7 +110,7 @@ buttons.forEach((button) => {
   button.addEventListener('click', () => {
     playRound(button.id, getComputerChoice());
     if (playerScore === 5 || computerScore == 5) {
-
+      gameOver()
     }
     currentRound += 1;
     updateUi()
