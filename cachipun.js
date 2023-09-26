@@ -62,6 +62,16 @@ function game() {
   }
 }
 
+function printWinner(playerScore, computerScore) {
+  if (playerScore > computerScore) {
+    return `Player wins with a score of ${ playerScore }`
+  } else if (computerScore > playerScore) {
+    return `Computer wins with a socre of ${ computerScore }`
+  } else {
+    return `Player and computer tied with a score of ${ playerScore }`
+  }
+}
+
 game()
 
 module.exports = {
