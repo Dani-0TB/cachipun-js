@@ -1,18 +1,9 @@
-function outputText(string) {
-  let output = document.querySelector('.output')
+// game functions
 
-  let text = document.createElement('p');
-  text.textContent = string;
-  text.classList.add('out-txt');
-
-  output.appendChild(text);
-  output.scrollTop = output.scrollHeight;
-}
-
-function getComputerChoice(){
-  let choices = ['Rock','Paper','Scissors'];
-  let choice = Math.floor(Math.random() * 3);
-  return choices[choice];
+function initGame() {
+  let game = document.querySelector('.game');
+  game.classList.toggle('hide');
+  start.classList.toggle('hide');
 }
 
 function playRound(playerSelection, computerSelection){
@@ -38,6 +29,25 @@ function playRound(playerSelection, computerSelection){
   }
 }
 
+function getComputerChoice(){
+  let choices = ['Rock','Paper','Scissors'];
+  let choice = Math.floor(Math.random() * 3);
+  return choices[choice];
+}
+
+// helper functions
+
+function outputText(string) {
+  let output = document.querySelector('.output')
+
+  let text = document.createElement('p');
+  text.textContent = string;
+  text.classList.add('out-txt');
+
+  output.appendChild(text);
+  output.scrollTop = output.scrollHeight;
+}
+
 function capitalize(string) {
   return string[0].toUpperCase() + string.slice(1);
 }
@@ -52,6 +62,7 @@ function printWinner(playerScore, computerScore) {
   }
 }
 
+// Program Code
 let buttons = document.querySelectorAll('.btn');
 
 buttons.forEach((button) => {
@@ -62,10 +73,11 @@ buttons.forEach((button) => {
 
 let start = document.querySelector('.start-btn');
 start.addEventListener('click', () => {
-  let game = document.querySelector('.game');
-  game.classList.toggle('hide');
-  start.classList.toggle('hide');
+  initGame()
 });
+
+// autostart game
+initGame()
 
 // module.exports = {
 //   playRound,
