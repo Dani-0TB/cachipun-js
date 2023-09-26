@@ -5,8 +5,6 @@ function initGame() {
   computerScore = 0;
   currentRound = 1;
   maxRounds = 5;
-  gameOver = false;
-  let game = document.querySelector('.game');
   game.classList.toggle('hide');
   popup.classList.toggle('hide');
   updateUi()
@@ -50,6 +48,27 @@ function getComputerChoice(){
   return choices[choice];
 }
 
+function gameOver() {
+  let message = "";
+  if (playerScore === computerScore) {
+    message = `You tied with a score of ${ playerScore }`
+  } else if (playerScore > computerScore) {
+    message = `You win with a score of ${ playerScore }!`
+  }
+
+  message = `Computer wins with a score of ${ computerScore } :c`
+
+  let popupTitle = document.querySelector('.popup-title');
+  popupTitle.textContent = "Game Over";
+  let popupMessage = document.querySelector('.popup-text');
+  popupMessage.textContent = message;
+  start.textContent = "Restart Game";
+  popup.classList.toggle('hide');
+  game.classList.toggle('hide');
+  let output = document.querySelector('.output');
+  output.replaceChildren();
+}
+
 // helper functions
 
 function updateUi() {
@@ -84,6 +103,7 @@ function printWinner(playerScore, computerScore) {
 }
 
 // Program Code
+let game = document.querySelector('.game');
 let playerScore;
 let playerScoreElement = document.querySelector('#player-score');
 let computerScore;
@@ -106,7 +126,7 @@ buttons.forEach((button) => {
     if (currentRound < maxRounds) {
       currentRound += 1;
     } else {
-      
+      gameOver()
     }
     updateUi()
   });
